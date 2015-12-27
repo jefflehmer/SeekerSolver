@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace SeekerLib
 {
-    public class GameBoard// : IEnumerable<SpellCell>
+    public class GameBoard
     {
+        #region fields, properties, constants, and enums
+        protected enum PillarType
+        {
+            One = 6,
+            Two = 7
+        }
+        #endregion fields, properties, constants, andenums
+
         public GameBoard()
         {
             CreatePillars().ConnectPillars();
@@ -44,6 +52,7 @@ namespace SeekerLib
             return this;
         }
 
+        // not the most elegant way of connecting the network. does anyone want to suggest a cleaner way?
         private void ConnectSpellCell(SpellCell spellCell, List<Pillar> pillars)
         {
             var pillar = spellCell.Pillar;
@@ -109,20 +118,5 @@ namespace SeekerLib
             return new Pillar(offset, (int)pillarType);
         }
         #endregion pillars
-
-        #region enums
-        protected enum Edge
-        {
-            None,
-            Left,
-            Right
-        }
-
-        protected enum PillarType
-        {
-            One = 6,
-            Two = 7
-        }
-        #endregion enums
     }
 }
